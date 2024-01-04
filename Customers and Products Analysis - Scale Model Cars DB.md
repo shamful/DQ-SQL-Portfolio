@@ -142,6 +142,18 @@ GROUP BY 1, 2, 3
 ORDER BY product_performance DESC
    LIMIT 10;
 ```
+| productCode | productName              | productLine  | product_performance |
+|-------------|--------------------------|--------------|---------------------|
+| S12_1099    | 1968 Ford Mustang        | Classic Cars | 161531.48           |
+| S18_2795    | 1928 Mercedes-Benz SSK   | Vintage Cars | 132275.98           |
+| S32_1374    | 1997 BMW F650 ST         | Motorcycles  | 89364.89            |
+| S700_3167   | F/A 18 Hornet 1/72       | Planes       | 76618.4             |
+| S50_4713    | 2002 Yamaha YZR M1       | Motorcycles  | 73670.64            |
+| S700_1938   | The Mayflower            | Ships        | 69531.61            |
+| S24_2000    | 1960 BSA Gold Star DBD34 | Motorcycles  | 67193.49            |
+| S32_4289    | 1928 Ford Phaeton Deluxe | Vintage Cars | 60493.33            |
+| S72_3212    | Pont Yacht               | Ships        | 47550.4             |
+| S18_2248    | 1911 Ford Town Car       | Vintage Cars | 45306.77            |
 
 ### 2. How Should We Match Marketing and Communication Strategies to Customer Behavior?
 #### Let's identify the top 5 VIP customers
@@ -155,8 +167,8 @@ vip_customer AS (
       ON od.productCode = p.productCode
     JOIN orders AS o
       ON o.orderNumber = od.orderNumber
-GROUP BY 1
-ORDER BY 2 DESC
+GROUP BY o.customerNumber
+ORDER BY profit DESC
    LIMIT 5
 )
 
@@ -166,6 +178,13 @@ SELECT c.contactLastName, c.contactFirstName, c.city, c.country,
   JOIN customers AS c
     ON vc.customerNumber = c.customerNumber;
 ```
+| contactLastName | contactFirstName | city       | country   | profit    |
+|-----------------|------------------|------------|-----------|-----------|
+| Freyre          | Diego            | Madrid     | Spain     | 326519.66 |
+| Nelson          | Susan            | San Rafael | USA       | 236769.39 |
+| Young           | Jeff             | NYC        | USA       | 72370.09  |
+| Ferguson        | Peter            | Melbourne  | Australia | 70311.07  |
+| Labrune         | Janine           | Nantes     | France    | 60875.3   |
 
 #### Now let's identify the top 5 least engaged customers
 ```sql
@@ -178,7 +197,7 @@ SELECT o.customerNumber,
       ON od.productCode = p.productCode
     JOIN orders AS o
 	  ON o.orderNumber = od.orderNumber
-GROUP BY 1
+GROUP BY o.customerNumber
 ORDER BY profit
    LIMIT 5
 )
@@ -189,7 +208,13 @@ SELECT c.contactLastName, c.contactFirstName, c.city, c.country,
   JOIN customers AS c
     ON vc.customerNumber = c.customerNumber;
 ```
-
+| contactLastName | contactFirstName | city       | country | profit   |
+|-----------------|------------------|------------|---------|----------|
+| Young           | Mary             | Glendale   | USA     | 2610.87  |
+| Taylor          | Leslie           | Brickhaven | USA     | 6586.02  |
+| Ricotti         | Franco           | Milan      | Italy   | 9532.93  |
+| Schmitt         | Carine           | Nantes     | France  | 10063.8  |
+| Smith           | Thomas           | London     | UK      | 10868.04 |
 
 ### 3. How Much Can We Spend on Acquiring New Customers?
 Average of customer profits - think this needs more work
