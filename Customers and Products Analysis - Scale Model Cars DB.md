@@ -233,3 +233,6 @@ GROUP BY o.customerNumber
  SELECT AVG(profit) AS _avg_customer_profits
    FROM customer_profits;
 ```
+| avg_customer_profits |
+|----------------------|
+| 39039.5943877551     |
