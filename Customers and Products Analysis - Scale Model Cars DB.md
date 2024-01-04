@@ -13,14 +13,14 @@ This project will attempt to answer the following questions:
 ## Explore Scale Model Cars Database
 
 There are 8 tables in this database for recording all aspects on the business:
-- Customers: customer data. Contains sensitive information such as name, address and contact details
-- Employees: employee name, contacts, manager, position
-- Offices: sales office locations
-- Orders: customers' sales orders
-- OrderDetails: sales order line for each sales order
-- Payments: customers' payment records
-- Products: a list of scale model cars
-- ProductLines: a list of product line categories
+- Customers: Customer data including sensitive information such as name, address and contact details
+- Employees: Employee name, contacts, manager, position
+- Offices: Sales office locations
+- Orders: Customers' sales orders
+- OrderDetails: Sales order line for each sales order
+- Payments: Customers' payment records
+- Products: A list of scale model cars
+- ProductLines: A list of product line categories
 
 ### First let's look at the number of attributes and number of rows in each table
 ```sql
@@ -136,6 +136,29 @@ ORDER BY product_performance DESC
 #### Let's identify the top 5 VIP customers
 ```sql
 WITH
+vip_customer AS (
+  SELECT o.customerNumber,
+         SUM(od.quantityOrdered * (od.priceEach - p.buyPrice)) AS profit
+    FROM orderdetails AS od
+    JOIN products AS p
+      ON od.productCode = p.productCode
+    JOIN orders AS o
+      ON o.orderNumber = od.orderNumber
+GROUP BY 1
+ORDER BY 2 DESC
+   LIMIT 5
+)
+
+SELECT c.contactLastName, c.contactFirstName, c.city, c.country,
+       vc.profit
+  FROM vip_customer  AS vc
+  JOIN customers AS c
+    ON vc.customerNumber = c.customerNumber;
+```
+
+#### Now let's identify the top 5 least engaged customers
+```sql
+WITH
 vip_customers AS (
 SELECT o.customerNumber,
 	     SUM(od.quantityOrdered * (od.priceEach - p.buyPrice)) AS profit
@@ -152,29 +175,6 @@ ORDER BY profit
 SELECT c.contactLastName, c.contactFirstName, c.city, c.country,
        vc.profit
   FROM vip_customers  AS vc
-  JOIN customers AS c
-    ON vc.customerNumber = c.customerNumber;
-```
-
-#### Now let's identify the top 5 least engaged customers
-```sql
-WITH
-customer_profits AS (
-  SELECT o.customerNumber, SUM(quantityOrdered * (priceEach - buyPrice)) AS profit
-    FROM products p
-    JOIN orderdetails od
-      ON p.productCode = od.productCode
-    JOIN orders o
-      ON o.orderNumber = od.orderNumber
-GROUP BY o.customerNumber
-)
- 
- SELECT AVG(profit) AS _avg_customer_profits
-   FROM customer_profits;
-```
-SELECT c.contactLastName, c.contactFirstName, c.city, c.country,
-       vc.profit
-  FROM vip_customer  AS vc
   JOIN customers AS c
     ON vc.customerNumber = c.customerNumber;
 ```
