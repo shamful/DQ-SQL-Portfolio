@@ -178,3 +178,22 @@ SELECT c.contactLastName, c.contactFirstName, c.city, c.country,
   JOIN customers AS c
     ON vc.customerNumber = c.customerNumber;
 ```
+
+
+### 3. How Much Can We Spend on Acquiring New Customers?
+Average of customer profits - think this needs more work
+``` sql
+WITH
+customer_profits AS (
+  SELECT o.customerNumber, SUM(quantityOrdered * (priceEach - buyPrice)) AS profit
+    FROM products p
+    JOIN orderdetails od
+      ON p.productCode = od.productCode
+    JOIN orders o
+      ON o.orderNumber = od.orderNumber
+GROUP BY o.customerNumber
+)
+ 
+ SELECT AVG(profit) AS _avg_customer_profits
+   FROM customer_profits;
+```
