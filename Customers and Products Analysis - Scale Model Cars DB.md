@@ -100,6 +100,17 @@ SELECT 'Offices' AS table_name,
 2. There are 23 employees and 7 offices, suggesting there may only suggesting there may only be 3 - 4 employees in each office. This can also be explored later but isn't directly relevant to this analysis. 
 3. OrderDetails has the most records as it appears to hold information about each product purchased within all orders.
 
+| table_name   | number_of_attributes | number_of_rows |
+|--------------|----------------------|----------------|
+| Customers    | 13                   | 122            |
+| Products     | 9                    | 110            |
+| ProductLines | 4                    | 7              |
+| Orders       | 7                    | 326            |
+| OrderDetails | 5                    | 2996           |
+| Payments     | 4                    | 273            |
+| Employees    | 8                    | 23             |
+| Offices      | 9                    | 7              |
+
 ### Question 1. Which Products Should We Order More of or Less of?
 low stock(i.e. product in demand) and product performance
 ```sql
