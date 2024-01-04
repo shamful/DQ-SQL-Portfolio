@@ -136,7 +136,6 @@ LIMIT 10
 GROUP BY 1, 2, 3
 ORDER BY product_performance DESC
    LIMIT 10;
-
    
 -- 2. How Should We Match Marketing and Communication Strategies to Customer Behavior?
 -- Top 5 VIP customers 
@@ -181,10 +180,7 @@ SELECT c.contactLastName, c.contactFirstName, c.city, c.country,
   JOIN customers AS c
     ON vc.customerNumber = c.customerNumber;
  
- 
- 
- 
- 
+
 -- 3. How Much Can We Spend on Acquiring New Customers?
 -- average of customer profits
 
