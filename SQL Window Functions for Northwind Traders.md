@@ -602,11 +602,6 @@ Employees table had a photo column which seemed to be causing an error with the 
 ```Update employees SET photo = null;```
 
 
-```python
-
-```
-
-
 ```sql
 %%sql
 SELECT *
