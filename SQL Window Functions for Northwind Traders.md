@@ -9,58 +9,6 @@ Northwind Taders is an international gourmet food distributor. Management would 
 3. Analyzing sales growth to identify trends, monitor company progress, and make more accurate forecasts,
 4. And evaluating customer purchase behavior to target high-value customers with promotional incentives.
 
-## Load sql plugin and connect to Northwind postgres db
-
-
-```python
-!pip3 install ipython-sql
-```
-
-    Requirement already satisfied: ipython-sql in c:\users\shami\anaconda3\lib\site-packages (0.5.0)
-    Requirement already satisfied: prettytable in c:\users\shami\anaconda3\lib\site-packages (from ipython-sql) (3.9.0)
-    Requirement already satisfied: ipython in c:\users\shami\anaconda3\lib\site-packages (from ipython-sql) (8.15.0)
-    Requirement already satisfied: sqlalchemy>=2.0 in c:\users\shami\anaconda3\lib\site-packages (from ipython-sql) (2.0.25)
-    Requirement already satisfied: sqlparse in c:\users\shami\anaconda3\lib\site-packages (from ipython-sql) (0.4.4)
-    Requirement already satisfied: six in c:\users\shami\anaconda3\lib\site-packages (from ipython-sql) (1.16.0)
-    Requirement already satisfied: ipython-genutils in c:\users\shami\anaconda3\lib\site-packages (from ipython-sql) (0.2.0)
-    Requirement already satisfied: typing-extensions>=4.6.0 in c:\users\shami\anaconda3\lib\site-packages (from sqlalchemy>=2.0->ipython-sql) (4.7.1)
-    Requirement already satisfied: greenlet!=0.4.17 in c:\users\shami\anaconda3\lib\site-packages (from sqlalchemy>=2.0->ipython-sql) (2.0.1)
-    Requirement already satisfied: backcall in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (0.2.0)
-    Requirement already satisfied: decorator in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (5.1.1)
-    Requirement already satisfied: jedi>=0.16 in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (0.18.1)
-    Requirement already satisfied: matplotlib-inline in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (0.1.6)
-    Requirement already satisfied: pickleshare in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (0.7.5)
-    Requirement already satisfied: prompt-toolkit!=3.0.37,<3.1.0,>=3.0.30 in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (3.0.36)
-    Requirement already satisfied: pygments>=2.4.0 in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (2.15.1)
-    Requirement already satisfied: stack-data in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (0.2.0)
-    Requirement already satisfied: traitlets>=5 in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (5.7.1)
-    Requirement already satisfied: colorama in c:\users\shami\anaconda3\lib\site-packages (from ipython->ipython-sql) (0.4.6)
-    Requirement already satisfied: wcwidth in c:\users\shami\anaconda3\lib\site-packages (from prettytable->ipython-sql) (0.2.5)
-    Requirement already satisfied: parso<0.9.0,>=0.8.0 in c:\users\shami\anaconda3\lib\site-packages (from jedi>=0.16->ipython->ipython-sql) (0.8.3)
-    Requirement already satisfied: executing in c:\users\shami\anaconda3\lib\site-packages (from stack-data->ipython->ipython-sql) (0.8.3)
-    Requirement already satisfied: asttokens in c:\users\shami\anaconda3\lib\site-packages (from stack-data->ipython->ipython-sql) (2.0.5)
-    Requirement already satisfied: pure-eval in c:\users\shami\anaconda3\lib\site-packages (from stack-data->ipython->ipython-sql) (0.2.2)
-    
-
-
-```python
-%load_ext sql
-```
-
-    The sql extension is already loaded. To reload it, use:
-      %reload_ext sql
-    
-
-
-```python
-import getpass
-pw = getpass.getpass('Énter password')
-%sql postgresql://postgres:{pw}@localhost:5432/northwind
-```
-
-    Énter password ········
-    
-
 ## Getting to Know the Data
 
 ![alt text](https://github.com/pthom/northwind_psql/blob/master/ER.png?raw=true)
